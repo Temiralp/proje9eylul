@@ -1,0 +1,21 @@
+1. Sayfaya Yönlendirme:
+Tıklama Olayı: Kullanıcı bir ürün kartına tıkladığında, window.location.href = "product-details.html?id=" + pages[i].id; ifadesi çalışır.
+Yönlendirme: Bu ifade, tarayıcıyı product-details.html sayfasına yönlendirir ve URL'nin sonuna tıklanan ürünün id değerini (örneğin, 5) ekler. Yani, tarayıcı product-details.html?id=5 adresine gider.
+2. Sayfanın Yüklenmesi:
+Sayfa Yüklenir: product-details.html sayfası tarayıcıda yüklenir. Bu sayfa, normal bir HTML sayfasıdır ve içerisinde JavaScript kodları bulunur.
+3. id Parametresinin Alınması:
+URL Parametresini Alma: JavaScript kullanarak, URL'deki id parametresi (?id=5 gibi) alınır. Bu, şu satırla yapılır:
+javascript
+Kodu kopyala
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id');
+Anlamı: Bu kod, URL'deki id parametresinin değerini (5) alır ve productId değişkenine atar.
+4. Uygun İçeriğin Gösterilmesi:
+API İsteği: Alınan id değeri (5) ile bir API isteği yapılır. Örneğin:
+javascript
+Kodu kopyala
+fetch("https://fakestoreapi.com/products/" + productId)
+Bu istek, id değeri 5 olan ürünü almak için yapılır.
+İçerik Güncelleme: Gelen ürün verileriyle sayfa içeriği (başlık, resim, açıklama, vb.) güncellenir ve kullanıcıya gösterilir.
+Sonuç:
+Evet, tam olarak dediğiniz gibi işliyor: Tarayıcı önce product-details.html sayfasına yönlendirilir, ardından URL'deki id parametresi alınır ve bu id ile ilgili içerik dinamik olarak gösterilir. Bu mekanizma, farklı ürünlerin detaylarını tek bir şablon sayfa üzerinden dinamik olarak gösterebilmenizi sağlar.
